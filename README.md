@@ -4,7 +4,7 @@
 
 from bigbluepython import MainBBB
 
-bbb = MainBBB(SERVICE_URL, SECRET_KEY)
+bbb = MainBBB(BBB_SERVICE_URL, BBB_SECRET_KEY)
 
 meetings = bbb.api.getMeetings()
 
