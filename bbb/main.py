@@ -10,11 +10,15 @@ from .request import BBBRequests
 class MainBBB:
 
     def __init__(self, service_url: str, secret: str):
+        """
+        :service_url = 'https://bbb.example.com/bigbluebutton/api/'
+        :secret = You can get your secret key by using ```bbb-conf --secret```
+        """
         self.service_url = service_url
         self.secret = secret
 
         if not service_url.endswith('/'):
-            raise ValueError('Invalid Api please append slash to the end of service_url')
+            raise ValueError('Invalid SERVICE_URL. Please append slash to the end of SERVICE_URL')
 
         self.api = BBBRequests(self)
 
@@ -35,14 +39,15 @@ class MainBBB:
         data.update({
             'checksum': self.checksum(endpoint, params=params)
         })
-        req = requests.get(self.service_url + endpoint, params=data)
-        print(req.url)
+
+        try:
+            req = requests.get(self.service_url + endpoint, params=data)
+        except:
+            raise Exception("Connection Error")
+
         if int(req.status_code / 100) != 2:
             raise Exception('Non 2xx HTTP status code response')
 
         response = xmltodict.parse(req.text)
-
-        if str(response['response']['returncode']).lower() != 'success':
-            raise Exception('Recieved a non-success response: ' + response['response']['message'])
 
         return response['response']
