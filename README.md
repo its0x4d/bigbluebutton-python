@@ -1,5 +1,5 @@
 # bigbluebutton-python
-#### An unofficial bigbluebutton python api library.
+####  *** An unofficial bigbluebutton python api library. ***
 ```python
 
 from bigbluepython import MainBBB
