@@ -4,5 +4,5 @@ bbb = MainBBB()
 
 _response = bbb.api.getMeetings()
 
-for i in _response.meetings['meeting']:
+for i in _response.meetings:
     print(i)

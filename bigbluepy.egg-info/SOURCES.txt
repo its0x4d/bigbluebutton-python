@@ -1,0 +1,15 @@
+README.md
+setup.py
+bigbluepy/__init__.py
+bigbluepy/main.py
+bigbluepy/requests.py
+bigbluepy.egg-info/PKG-INFO
+bigbluepy.egg-info/SOURCES.txt
+bigbluepy.egg-info/dependency_links.txt
+bigbluepy.egg-info/requires.txt
+bigbluepy.egg-info/top_level.txt
+bigbluepy/response/__init__.py
+bigbluepy/response/create_meeting_response.py
+bigbluepy/response/end_meeting_response.py
+examples/__init__.py
+examples/getMeetings.py
