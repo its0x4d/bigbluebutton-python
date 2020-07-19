@@ -4,3 +4,6 @@ __pycache__
 example.py
 .env
 .vscode
+bigbluepy.egg-info/
+build/
+dist/
