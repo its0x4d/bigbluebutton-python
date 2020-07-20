@@ -32,33 +32,33 @@ class BBBRequests:
         """
         if not meetingID:
             # A good choice for the meeting ID is to generate a GUID value as this all but guarantees that different meetings will not have the same meetingID.
-            meetingID = uuid4()
+            meetingID = str( uuid4() )
         data = {
             'meetingID': meetingID
         }
         if name:
-            if not isinstance(name, int):
-                raise ValueError(f'name must be instance of int, not {type(name)}')
+            if not isinstance(name, str):
+                raise ValueError(f'name must be instance of str, not {type(name)}')
             data['name'] = name
 
         if attendeePW:
-            if not isinstance(attendeePW, int):
-                raise ValueError(f'attendeePW must be instance of int, not {type(attendeePW)}')
+            if not isinstance(attendeePW, str):
+                raise ValueError(f'attendeePW must be instance of str, not {type(attendeePW)}')
             data['attendeePW'] = attendeePW
 
         if moderatorPW:
-            if not isinstance(moderatorPW, int):
-                raise ValueError(f'moderatorPW must be instance of int, not {type(moderatorPW)}')
+            if not isinstance(moderatorPW, str):
+                raise ValueError(f'moderatorPW must be instance of str, not {type(moderatorPW)}')
             data['moderatorPW'] = moderatorPW
 
         if welcome:
-            if not isinstance(welcome, int):
-                raise ValueError(f'welcome must be instance of int, not {type(welcome)}')
+            if not isinstance(welcome, str):
+                raise ValueError(f'welcome must be instance of str, not {type(welcome)}')
             data['welcome'] = welcome
 
         if dialNumber:
-            if not isinstance(dialNumber, int):
-                raise ValueError(f'dialNumber must be instance of int, not {type(dialNumber)}')
+            if not isinstance(dialNumber, str):
+                raise ValueError(f'dialNumber must be instance of str, not {type(dialNumber)}')
             data['dialNumber'] = dialNumber
 
         if voiceBridge:
@@ -217,10 +217,11 @@ class BBBRequests:
                 raise ValueError(f'Invalid guestPolicy type. Valid types are {str(types)}')
             data['guestPolicy'] = guestPolicy
         
+        # _query_data = self.app.build_meta_data(data)
         query = self.app.send_request('create', params=data)
         return createMeetingResponse(**query)
     
-    def joinMeeting(self, fullName: str, meetingID: str, password: str, createTime: str = None, userID: str = None, webVoiceConf: str = None, configToken: str = None, defaultLayout: str = None, avatarURL: str = None, redirect: str = 'false', clientURL: str = None, joinViaHtml5: bool = None, guest: bool = None):
+    def joinMeeting(self, fullName: str, meetingID: str, password: str, createTime: str = None, userID: str = None, webVoiceConf: str = None, configToken: str = None, defaultLayout: str = None, avatarURL: str = None, redirect: bool = True, clientURL: str = None, joinViaHtml5: bool = False, guest: bool = None):
         """
         :isMeetingRunning [https://docs.bigbluebutton.org/dev/api.html#join]
         :fullName = The full name that is to be used to identify this user to other conference attendees.
@@ -232,7 +233,8 @@ class BBBRequests:
             'fullName': fullName,
             'meetingID': meetingID,
             'password': password,
-            'redirect': 'false'
+            'redirect': 'false' if not redirect else 'true',
+            'joinViaHtml5': 'false' if not joinViaHtml5 else 'true'
         }
         
         if createTime:
@@ -260,24 +262,24 @@ class BBBRequests:
                 raise ValueError(f'avatarURL must be instance of str, not {type(avatarURL)}')
             data['avatarURL'] = avatarURL
         if redirect:
-            if not isinstance(redirect, str):
-                raise ValueError(f'redirect must be instance of str, not {type(redirect)}')
+            if not isinstance(redirect, bool):
+                raise ValueError(f'redirect must be instance of bool, not {type(redirect)}')
             data['redirect'] = redirect
         if clientURL:
             if not isinstance(clientURL, str):
                 raise ValueError(f'clientURL must be instance of str, not {type(clientURL)}')
             data['clientURL'] = clientURL
-        if joinViaHtml5:
-            if not isinstance(joinViaHtml5, bool):
-                raise ValueError(f'joinViaHtml5 must be instance of bool, not {type(joinViaHtml5)}')
-            data['joinViaHtml5'] = joinViaHtml5
         if guest:
             if not isinstance(guest, bool):
                 raise ValueError(f'guest must be instance of bool, not {type(guest)}')
             data['guest'] = guest
         
-        query = self.app.send_request('join', params=data)
-        return joinMeetingResponse(**query)
+        if redirect:
+            query = self.app.send_request('join', params=data, just_create=True)
+            return query
+        query = self.app.send_request('join', params=data, just_create=True)
+        return joinMeetingResponse(query)
+
     
     def isMeetingRunning(self, meetingID: str):
         """
