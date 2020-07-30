@@ -7,6 +7,10 @@
 - [X] end
 - [X] getMeetingInfo
 - [X] getMeeting
+## Installation
+```
+pip3 install bigbluepy
+```
 
 ```python
 
