@@ -11,7 +11,13 @@
 ```
 pip3 install bigbluepy
 ```
-
+## Manual Installation
+```
+git clone https://github.com/its0x4d/bigbluebutton-python
+pip3 install -r requirments.txt
+python3 setup.py install
+```
+## Code Example
 ```python
 
 from bigbluepy import MainBBB
