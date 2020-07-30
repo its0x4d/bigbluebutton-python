@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="bigbluepy",
-    version="0.1.5",
+    version="0.1.8",
     author="UWSGI",
     url="https://github.com/its0x4d/bigbluepython-python",
     author_email="mosydev2016@gmail.com",

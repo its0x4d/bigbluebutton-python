@@ -61,7 +61,7 @@ class MainBBB:
             else:
                 meta_data.update({f'meta-{key}': value})
         return meta_data
-
+    
     def send_request(self, endpoint: str, params: dict = {}, just_create: bool = False) -> Optional[collections.OrderedDict]:
         data = params
         data = data.update({

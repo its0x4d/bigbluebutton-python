@@ -23,8 +23,11 @@ class BBBRequests:
         If you want to change this range, 
         edit FreeSWITCH dialplan and defaultNumDigitsForTelVoice of bigbluebutton.properties.
         """
-        return "".join(random.choices("1234567890", k=5))
+        return int("".join(random.choices("1234567890", k=5)))
     
+    def createMeetingID(self):
+        return str( uuid4() )
+
     def createMeeting(self, name: str = None, meetingID: str = None, attendeePW: str = None, moderatorPW: str = None, welcome: str = None, dialNumber: str = None, voiceBridge: int = None, maxParticipants: int = None, logoutURL: str = None, record: bool = None, duration: int = None, isBreakout: bool = None, parentMeetingID: str = None, sequence: int = None, freeJoin: bool = None, meta: str = None, moderatorOnlyMessage: str = None, autoStartRecording: bool = None, allowStartStopRecording: bool = True, webcamsOnlyForModerator: bool = None, logo: str = None, bannerText: str = None, bannerColor: str = None, _copyright: str = None, muteOnStart: bool = None, allowModsToUnmuteUsers: bool = False, lockSettingsDisableCam: bool = False, lockSettingsDisableMic: bool = False, lockSettingsDisablePrivateChat: bool = False, lockSettingsDisablePublicChat: bool = False, lockSettingsDisableNote: bool = False, lockSettingsLockedLayout: bool = False, lockSettingsLockOnJoin: bool = True, lockSettingsLockOnJoinConfigurable: bool = False, guestPolicy: str = None):
         """
         :createMeeting [https://docs.bigbluebutton.org/dev/api.html#create]
@@ -32,7 +35,7 @@ class BBBRequests:
         """
         if not meetingID:
             # A good choice for the meeting ID is to generate a GUID value as this all but guarantees that different meetings will not have the same meetingID.
-            meetingID = str( uuid4() )
+            meetingID = self.createMeetingID()
         data = {
             'meetingID': meetingID
         }
