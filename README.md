@@ -7,6 +7,7 @@
 - [X] end
 - [X] getMeetingInfo
 - [X] getMeeting
+- [X] InsertDocument
 ## Installation
 ```
 pip3 install bigbluepy
