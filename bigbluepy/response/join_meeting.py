@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 
 @dataclass
-class joinMeetingResponse:
+class JoinMeetingResponse:
     returncode: str
     meeting_id: str
     user_id: str

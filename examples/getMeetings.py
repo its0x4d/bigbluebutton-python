@@ -1,8 +1,15 @@
 from bigbluepy.main import MainBBB
 
-bbb = MainBBB()
+bbb = MainBBB(
+    service_url='https://test-install.blindsidenetworks.com/bigbluebutton/api/',
+    secret='8cd8ef52e8e101574e400365b55e11a6'
+)
 
-_response = bbb.api.getMeetings()
+_response = bbb.api.create_meeting(
+    name='Test Meeting'
+)
 
-for i in _response.meetings['meeting']:
-    print(i)
+print(
+    '[+] Meeting created:',
+    _response,
+)

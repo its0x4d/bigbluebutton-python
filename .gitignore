@@ -7,3 +7,4 @@ example.py
 bigbluepy.egg-info/
 build/
 dist/
+.idea/

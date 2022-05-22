@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 
 @dataclass
-class createMeetingResponse:
+class CreateMeetingResponse:
     returncode: str = None
     meetingID: str = None
     internalMeetingID: str = None 

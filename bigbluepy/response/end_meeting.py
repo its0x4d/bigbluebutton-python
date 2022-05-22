@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 
 @dataclass
-class endMeetingResponse:
+class EndMeetingResponse:
     returncode: str
     messageKey: str
     message: str
