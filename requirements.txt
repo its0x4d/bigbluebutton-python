@@ -31,7 +31,7 @@ six==1.14.0
 stack-data==0.2.0
 toml==0.10.1
 traitlets==5.2.1.post0
-urllib3==1.25.11
+urllib3==1.26.5
 wcwidth==0.2.5
 wrapt==1.12.1
 xmltodict==0.12.0
