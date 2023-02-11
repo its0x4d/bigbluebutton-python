@@ -8,7 +8,7 @@ decorator==5.1.1
 environs==8.0.0
 executing==0.8.3
 idna==2.9
-ipython==8.3.0
+ipython==8.10.0
 isort==4.3.21
 jedi==0.18.1
 lazy-object-proxy==1.4.3
